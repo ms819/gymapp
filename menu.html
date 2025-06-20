@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}メニュー{% endblock %}
+
+{% block content %}
+<h1>メニュー</h1>
+<ul>
+  <li><a href="{{ url_for('attendance') }}">出席確認</a></li>
+  <li><a href="{{ url_for('index') }}">今日の記録</a></li>
+  <li><a href="{{ url_for('monthly') }}">今月の記録一覧</a></li>
+</ul>
+<p><a href="{{ url_for('logout') }}">ログアウト</a></p>
+{% endblock %}

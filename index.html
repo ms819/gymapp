@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}今日の記録{% endblock %}
+
+{% block content %}
+<h1>{{ now.strftime('%Y年%m月') }} の記録</h1>
+
+<!-- 入力フォーム -->
+<form method="post" action="{{ url_for('index') }}">
+  <div><label>日付:</label><input type="date" name="date" required></div>
+  <div><label>種目:</label><input type="text" name="exercise" required></div>
+  <div><label>重量:</label><input type="number" name="weight" step="0.1" required></div>
+  <div><label>回数:</label><input type="number" name="reps" required></div>
+  <div><label>セット:</label><input type="number" name="sets" required></div>
+  <button type="submit">保存</button>
+</form>
+
+<!-- 記録一覧 -->
+<h2>記録一覧</h2>
+<table>
+  <tr><th>日付</th><th>種目</th><th>重量</th><th>回数</th><th>セット</th></tr>
+  {% for w in workouts %}
+  <tr>
+    <td>{{ w.date }}</td>
+    <td>{{ w.exercise }}</td>
+    <td>{{ w.weight }}</td>
+    <td>{{ w.reps }}</td>
+    <td>{{ w.sets }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<!-- メニューに戻るボタン -->
+<form action="{{ url_for('menu') }}" method="get" style="position: fixed; bottom: 20px; right: 20px;">
+  <button type="submit">メニューに戻る</button>
+</form>
+{% endblock %}

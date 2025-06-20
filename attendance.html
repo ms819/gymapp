@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}出席カード{% endblock %}
+
+{% block content %}
+<h1>{{ year }}年{{ month }}月 出席カード</h1>
+<table class="attendance-calendar">
+  <thead>
+    <tr><th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th></tr>
+  </thead>
+  <tbody>
+    {% for week in cal %}
+    <tr>
+      {% for day in week %}
+        {% if day == 0 %}
+          <td></td>
+        {% else %}
+          {% set date_str = '%04d-%02d-%02d' | format(year, month, day) %}
+          <td>{{ day }}<br>{% if date_str in dates %}<span class="stamp">✔️</span>{% endif %}</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

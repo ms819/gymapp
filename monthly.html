@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}今月の記録{% endblock %}
+
+{% block content %}
+<h1>{{ now.strftime('%Y年%m月') }} の記録</h1>
+<table>
+  <tr><th>日付</th><th>種目</th><th>重量</th><th>回数</th><th>セット</th></tr>
+  {% for w in workouts %}
+  <tr>
+    <td>{{ w.date }}</td>
+    <td>{{ w.exercise }}</td>
+    <td>{{ w.weight }}</td>
+    <td>{{ w.reps }}</td>
+    <td>{{ w.sets }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
